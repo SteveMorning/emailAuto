@@ -8,25 +8,45 @@ require('dotenv').config();
 
 // Configuración de la base de datos
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
+  host: process.env.DB_HOST || '10.120.52.54',
+  user: process.env.DB_USER || 'erjuarez',
+  password: process.env.DB_PASSWORD || 'Juar0150',
   database: process.env.DB_NAME || 'bd2_pem',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 };
 
+
+// EMAIL_HOST=smtp.office365.com
+// EMAIL_PORT=587
+// EMAIL_USER=m003195@teco.com.ar
+// EMAIL_PASS=Teco2023
+
+// EMAIL_HOST_G=smtp.gmail.com
+// EMAIL_PORT_G=465
+// EMAIL_USER_G=syabackofficeservice@gmail.com
+// EMAIL_PASS_G=lyxvfyiqqnrwgjfq
+
 // Configuración del transportador de email
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  host: process.env.SMTP_HOST || 'smtp.office365.com',
   port: process.env.SMTP_PORT || 587,
   secure: false, // true para puerto 465, false para otros
   auth: {
-    user: process.env.EMAIL_USER || 'backoffice_ays@teco.com.ar',
-    pass: process.env.EMAIL_PASSWORD || 'tu_contraseña'
+    user: process.env.EMAIL_USER || 'm003195@teco.com.ar',
+    pass: process.env.EMAIL_PASSWORD || 'Teco2023'
   }
 });
+// const transporter = nodemailer.createTransport({
+//   host: process.env.SMTP_HOST || 'smtp.gmail.com',
+//   port: process.env.SMTP_PORT || 587,
+//   secure: false, // true para puerto 465, false para otros
+//   auth: {
+//     user: process.env.EMAIL_USER || 'backoffice_ays@teco.com.ar',
+//     pass: process.env.EMAIL_PASSWORD || 'tu_contraseña'
+//   }
+// });
 
 // Función para obtener registros pendientes
 async function obtenerRegistrosPendientes() {
@@ -52,7 +72,7 @@ async function obtenerRegistrosPendientes() {
 // Función para enviar email
 async function enviarEmail(registro) {
   const mailOptions = {
-    from: `"Sistema de Novedades" <${process.env.EMAIL_USER || 'backoffice_ays@teco.com.ar'}>`,
+    from: `"Performance Eficiencia y Mejora" <${process.env.EMAIL_USER || 'PEM@teco.com.ar'}>`,
     to: registro.email,
     subject: `Novedad: ${registro.novedad}`,
     html: generarHTMLEmail(registro)
