@@ -4,38 +4,30 @@
 const cron = require('node-cron');
 const mysql = require('mysql2/promise');
 const nodemailer = require('nodemailer');
+
 require('dotenv').config();
 
 // Configuración de la base de datos
 const dbConfig = {
-  host: process.env.DB_HOST || '10.120.52.54',
-  user: process.env.DB_USER || 'erjuarez',
-  password: process.env.DB_PASSWORD || 'Juar0150',
-  database: process.env.DB_NAME || 'bd2_pem',
+  host: process.env.DB_HOST ,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD ,
+  database: process.env.DB_NAME ,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 };
 
 
-// EMAIL_HOST=smtp.office365.com
-// EMAIL_PORT=587
-// EMAIL_USER=m003195@teco.com.ar
-// EMAIL_PASS=Teco2023
-
-// EMAIL_HOST_G=smtp.gmail.com
-// EMAIL_PORT_G=465
-// EMAIL_USER_G=syabackofficeservice@gmail.com
-// EMAIL_PASS_G=lyxvfyiqqnrwgjfq
 
 // Configuración del transportador de email
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.office365.com',
-  port: process.env.SMTP_PORT || 587,
+  host: process.env.SMTP_HOST ,
+  port: process.env.SMTP_PORT,
   secure: false, // true para puerto 465, false para otros
   auth: {
-    user: process.env.EMAIL_USER || 'm003195@teco.com.ar',
-    pass: process.env.EMAIL_PASSWORD || 'Teco2023'
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD 
   }
 });
 // const transporter = nodemailer.createTransport({
