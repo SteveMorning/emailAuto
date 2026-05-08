@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+   body {
+       font-family: Arial, sans-serif;
+       line-height: 1.6;
+       color: #333;
+   }
+   .container {
+       max-width: 600px;
+       margin: 20px auto;
+       padding: 20px;
+       border: 1px solid #e0e0e0;
+       border-radius: 8px;
+   }
+   .subject-header {
+       font-weight: bold;
+       font-size: 1.2em;
+       margin-bottom: 20px;
+       background-color: #2e7d32;
+       color: #ffffff;
+       padding: 15px;
+       border-radius: 5px;
+       text-align: center;
+   }
+   .message-body {
+       padding: 0 10px;
+   }
+   .event-detail {
+       margin: 12px 0;
+   }
+   .footer {
+       margin-top: 25px;
+       font-size: 0.9em;
+       color: #666;
+       border-top: 1px solid #eee;
+       padding-top: 15px;
+   }
+   .salutation {
+       margin-top: 20px;
+   }
+</style>
+</head>
+<body>
+   <div class="container">
+       <!-- Encabezado con el Tipo de Evento y fondo verde -->
+       <div class="subject-header">
+           📌 {{tipo_evento}} en StatusHub
+       </div>
+
+       <div class="message-body">
+           <div class="event-detail">
+               🕐 <strong>Inicio</strong>: {{fecha_inicio}}
+           </div>
+           <div class="event-detail">
+               📍 <strong>Territorio/s</strong>: {{territorios}}
+           </div>
+           <div class="event-detail">
+               📍 <strong>Observacion/s</strong>: {{observacion}}
+           </div>
+           <div class="footer">
+               <p>Este mail es una notificación automática.</p>
+               <p>Ante cualquier consulta comunicarse con el referente de Soporte al Técnico que corresponda.</p>
+           </div>
+
+           <div class="salutation">
+               Saludos
+           </div>
+       </div>
+   </div>
+</body>
+</html>

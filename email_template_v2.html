@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novedad</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    padding: 20px;
+  }
+  .wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .card {
+    background: linear-gradient(135deg, #1a6dd4 0%, #1a4fbd 40%, #5b2fce 80%, #7b2ff7 100%);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    padding: 28px 28px 0 28px;
+    min-height: 420px;
+  }
+
+  /* Círculos decorativos de fondo */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 30px; right: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+
+  /* Header: logo */
+  .top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+  }
+  .logo {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    padding: 4px 14px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .logo span {
+    color: #5bf0a0;
+  }
+
+  /* Badge Novedades */
+  .badge {
+    display: inline-block;
+    background: #6a1fc2;
+    color: #fff;
+    font-size: 0.82em;
+    font-weight: bold;
+    padding: 5px 16px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Título tipo_evento */
+  .main-title {
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 18px;
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+
+  /* Panel de datos + imagen */
+  .content-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .info-panel {
+    background: rgba(255,255,255,0.92);
+    border-radius: 14px;
+    padding: 18px 20px;
+    flex: 1;
+    min-width: 0;
+  }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.88em;
+    color: #1a237e;
+    line-height: 1.4;
+  }
+  .info-item:last-child { margin-bottom: 0; }
+  .info-icon { font-size: 1em; flex-shrink: 0; margin-top: 1px; }
+  .info-label { font-weight: bold; }
+  .info-value { color: #333; }
+
+  /* Imagen calendario decorativa */
+  .deco-img {
+    width: 160px;
+    flex-shrink: 0;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  .deco-img svg {
+    width: 140px;
+    height: 140px;
+    filter: drop-shadow(0 8px 24px rgba(80,40,200,0.35));
+  }
+
+  /* Footer */
+  .footer-bar {
+    background: #1a2fa0;
+    border-radius: 0 0 18px 18px;
+    margin: 18px -28px 0 -28px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .footer-icon {
+    background: #2e45c2;
+    border-radius: 8px;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 1.1em;
+    flex-shrink: 0;
+  }
+  .footer-fecha {
+    flex: 1;
+    color: #fff;
+    font-size: 0.85em;
+    line-height: 1.3;
+  }
+  .footer-fecha .lbl { color: #aac4ff; font-size: 0.8em; }
+  .footer-fecha .val { font-weight: bold; font-size: 0.95em; }
+  .footer-cast {
+    background: #3a56e0;
+    border-radius: 8px;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 1.1em;
+    flex-shrink: 0;
+  }
+  .hub-badge {
+    background: #fff;
+    border-radius: 20px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82em;
+    font-weight: bold;
+    color: #1a2fa0;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .hub-toggle {
+    width: 28px; height: 16px;
+    background: #3a7bff;
+    border-radius: 8px;
+    position: relative;
+    display: inline-block;
+  }
+  .hub-toggle::after {
+    content: '';
+    position: absolute;
+    right: 2px; top: 2px;
+    width: 12px; height: 12px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  /* Footer aviso */
+  .footer-note {
+    text-align: center;
+    color: #888;
+    font-size: 0.78em;
+    margin-top: 14px;
+    padding: 0 10px 10px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="card">
+
+    <!-- Logo personal -->
+    <div class="top-bar">
+      <div class="logo">personal</div>
+    </div>
+
+    <!-- Badge -->
+    <div class="badge">Novedades</div>
+
+    <!-- Título principal -->
+    <div class="main-title">{{tipo_evento}}</div>
+
+    <!-- Datos + imagen decorativa -->
+    <div class="content-row">
+      <div class="info-panel">
+        <div class="info-item">
+          <span class="info-icon">🕐</span>
+          <span><span class="info-label">Inicio:</span> <span class="info-value">{{fecha_inicio}}</span></span>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          <span><span class="info-label">Territorios:</span> <span class="info-value">{{territorios}}</span></span>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🔒</span>
+          <span><span class="info-label">Observaciones:</span> <span class="info-value">{{observacion}}</span></span>
+        </div>
+      </div>
+
+      <!-- Calendario decorativo SVG 3D-style -->
+      <div class="deco-img">
+        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sombra base -->
+          <ellipse cx="70" cy="128" rx="38" ry="8" fill="rgba(60,30,180,0.22)"/>
+          <!-- Cuerpo calendario -->
+          <rect x="18" y="30" width="90" height="80" rx="12" fill="#b8b0ff"/>
+          <rect x="18" y="30" width="90" height="80" rx="12" fill="url(#calGrad)"/>
+          <!-- Franja superior -->
+          <rect x="18" y="30" width="90" height="26" rx="12" fill="#7c6ef7"/>
+          <rect x="18" y="44" width="90" height="12" fill="#7c6ef7"/>
+          <!-- Argollas -->
+          <rect x="38" y="20" width="10" height="22" rx="5" fill="#5a4ecf"/>
+          <rect x="78" y="20" width="10" height="22" rx="5" fill="#5a4ecf"/>
+          <!-- Grid días -->
+          <rect x="28" y="64" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="48" y="64" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="68" y="64" width="16" height="14" rx="3" fill="#6a5ef5"/>
+          <rect x="88" y="64" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="28" y="82" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="48" y="82" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="68" y="82" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <rect x="88" y="82" width="16" height="14" rx="3" fill="#e8e4ff"/>
+          <!-- Check en día seleccionado -->
+          <text x="68" y="75" text-anchor="middle" font-size="10" fill="#fff">✓</text>
+          <!-- Gradiente -->
+          <defs>
+            <linearGradient id="calGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#c4bcff"/>
+              <stop offset="100%" stop-color="#9b8ef5"/>
+            </linearGradient>
+          </defs>
+          <!-- Reloj superpuesto -->
+          <circle cx="95" cy="95" r="26" fill="white" filter="url(#shadow)"/>
+          <circle cx="95" cy="95" r="22" fill="#f0eeff" stroke="#c0b8ff" stroke-width="2"/>
+          <line x1="95" y1="95" x2="95" y2="78" stroke="#6a5ef5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="95" y1="95" x2="108" y2="100" stroke="#9b8ef5" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="95" cy="95" r="3" fill="#6a5ef5"/>
+          <defs>
+            <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="rgba(100,80,220,0.25)"/>
+            </filter>
+          </defs>
+          <!-- Campana -->
+          <ellipse cx="112" cy="42" rx="14" ry="14" fill="#f5c842" filter="url(#bshadow)"/>
+          <path d="M105 44 Q107 34 112 33 Q117 34 119 44 Q121 50 112 52 Q103 50 105 44Z" fill="#f5c842"/>
+          <rect x="109" y="51" width="6" height="4" rx="2" fill="#d4a800"/>
+          <circle cx="112" cy="56" r="3" fill="#d4a800"/>
+          <defs>
+            <filter id="bshadow" x="-40%" y="-40%" width="180%" height="180%">
+              <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(200,150,0,0.3)"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="footer-bar">
+      <div class="footer-icon">🖥️</div>
+      <div class="footer-fecha">
+        <div class="lbl">Fecha</div>
+        <div class="val">{{fecha_inicio}}</div>
+      </div>
+      <div class="footer-cast">📡</div>
+      <div class="hub-badge">
+        HUB PEM
+        <span class="hub-toggle"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Nota pie -->
+  <div class="footer-note">
+    Este mail es una notificación automática.<br>
+    Ante cualquier consulta comunicarse con el referente de Soporte al Técnico que corresponda.
+  </div>
+</div>
+</body>
+</html>
