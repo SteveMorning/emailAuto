@@ -64,11 +64,11 @@ async function obtenerRegistrosPendientes() {
 // Función para enviar email
 async function enviarEmail(registro) {
   const mailOptions = {
-    from: `"Performance Eficiencia y Mejora" <${process.env.EMAIL_USER || 'PEM@teco.com.ar'}>`,
+    from: `"Performance Eficiencia y Mejora" <${process.env.EMAIL_USER || 'PEM@personal.com.ar'}>`,
     to: registro.email,
-    // cc: `erjuarez@teco.com.ar`,
+    cc: `erjuarez@personal.com.ar`,
     // cc: `ERJUAREZ@TECO.COM.AR , AOSCHUST@TECO.COM.AR`,
-    cc: `MARENDE@TECO.COM.AR , ERJUAREZ@TECO.COM.AR , NMONCHIETTI@TECO.COM.AR , PARCIDIACONO@TECO.COM.AR , SAMARQUEZ@TECO.COM.AR , LFREVILLA@TECO.COM.AR , PDALVAREZ@TECO.COM.AR , AOSCHUST@TECO.COM.AR`,
+    // cc: `MARENDE@TECO.COM.AR , ERJUAREZ@TECO.COM.AR , NMONCHIETTI@TECO.COM.AR , PARCIDIACONO@TECO.COM.AR , SAMARQUEZ@TECO.COM.AR , LFREVILLA@TECO.COM.AR , PDALVAREZ@TECO.COM.AR , AOSCHUST@TECO.COM.AR`,
 
     subject: `Novedad: ${registro.novedad}`,
     html: generarHTMLEmail(registro)
